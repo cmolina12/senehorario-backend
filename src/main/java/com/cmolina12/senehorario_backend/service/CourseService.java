@@ -98,7 +98,23 @@ public class CourseService {
             // Available Seats
 
             int availableSeats = Integer.parseInt(a.getSeatsavail());
+
+            // If availableSeats is negative, set it to 0
+            if (availableSeats < 0) {
+                availableSeats = 0;
+            }
+
             int totalSeats = Integer.parseInt(a.getMaxenrol());
+
+            // If totalSeats is negative, set it to 0
+            if (totalSeats < 0) {
+                totalSeats = 0;
+            }
+
+            // If availableSeats is greater than totalSeats, set it to totalSeats
+            if (availableSeats > totalSeats) {
+                availableSeats = totalSeats;
+            }
 
             // Create a section with the course code, section number, meetings, and
             // professors.
