@@ -95,26 +95,11 @@ public class CourseService {
                 profs.add(reorderProfessorName(ins.getName())); // Adds the reordered professor's name
             }
 
-            // Available Seats
+            int availableSeats = parseIntSafe(a.getSeatsavail());
+            int totalSeats = parseIntSafe(a.getMaxenrol());
 
-            int availableSeats = Integer.parseInt(a.getSeatsavail());
-
-            // If availableSeats is negative, set it to 0
-            if (availableSeats < 0) {
-                availableSeats = 0;
-            }
-
-            int totalSeats = Integer.parseInt(a.getMaxenrol());
-
-            // If totalSeats is negative, set it to 0
-            if (totalSeats < 0) {
-                totalSeats = 0;
-            }
-
-            // If availableSeats is greater than totalSeats, set it to totalSeats
-            if (availableSeats > totalSeats) {
-                availableSeats = totalSeats;
-            }
+            // Clamp available seats to [0, totalSeats]
+            availableSeats = Math.max(0, Math.min(availableSeats, totalSeats));
 
             // Create a section with the course code, section number, meetings, and
             // professors.
@@ -226,6 +211,14 @@ public class CourseService {
             // SecondLastName ThirdLastName".
         } else {
             return name; // If the name has more than 4 parts, we return it as is.
+        }
+    }
+
+    private int parseIntSafe(String value) {
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return 0; // or throw if you want strictness
         }
     }
 }
