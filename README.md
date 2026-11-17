@@ -1,5 +1,8 @@
 # Senéhorario Backend
 
+> [!IMPORTANT]
+> **This backend is retired.** Senéhorario is now a single Next.js app that includes the course API and schedule generation: [cmolina12/senehorario](https://github.com/cmolina12/senehorario), live at [senehorario.cmolina.xyz](https://senehorario.cmolina.xyz). This repository is archived for reference.
+
 This is the backend service for **Senéhorario**, a web application designed to help students at Uniandes build optimal class schedules.
 
 The backend is built with Spring Boot and is responsible for retrieving course data from the Uniandes public catalog, processing it, and exposing a REST API that the frontend consumes.
